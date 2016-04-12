@@ -295,7 +295,7 @@ Let R be a relational schema and let X and Y be two subset of the set of all att
 
 ---
 
-**BCNF is violated if exists X -> Y
+**BCNF** is violated if exists X -> Y
 
 - it is not trivial
 - X is not a super key
@@ -368,6 +368,10 @@ Indexes are added to
    - however, adding an index may speed up a gien update operation.
 
    
+---
+
+**Index only plan** means that a (non-clustered) index contains all the columns needed to answer the query without having to access the tuples in the database reletion.
+
 ---
 
 **Tuning Queries**
