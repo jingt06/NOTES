@@ -293,6 +293,18 @@ Let R be a relational schema and let X and Y be two subset of the set of all att
 
 ---
 
+**Armstrong's axiom**
+
+- **reflexivity**: Y in X =>  X -> Y
+- **Augumentation**: X -> Y => XZ -> YZ
+- **Transivity** X->Y, Y->Z => X -> Z
+
+**completenss**: anything in F+ can be derived
+
+**sound**: anything can be derived from F using Armstring's Axioms is in F+
+
+---
+
 **2NF** is violated if exists X -> Y
 
 - it is not trivial
