@@ -155,6 +155,12 @@ A **triger** is a procedure that is automatically invoked in response to a speci
 
 ---
 
+**preprocessor of embedded SQL**
+
+Thee embedded SQL statements are parsed by an embedded SQl preprocess and replaced by a host language calls to a code libarary.
+
+---
+
 **Difference between JDB and SQLJ, Why do they both exist**
 
 SQLJ provides embedded SQL statements. These SQL statements are static in nature and thus are preprocessed and precompiled. For instance, syntax checking and schema checking are done at compile time. JDBC allows dynamic queries that are checked at runtim. SQLJ is easier to use than JDBC and is often a better option for static queries. FOr dynamic queries, JDBC must still be used.
