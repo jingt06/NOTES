@@ -216,7 +216,7 @@ Embedded SQL and SQLJ use static queries, they allow compile-time syntax checkin
 
 **blind write**: writes to an object without ever reading the object
 
-**dirty read**: transaction reads a database object without ever reading the object
+**dirty read**: transaction read uncommitted object value
 
 **unrepeatable read**: transaction is unable to read the same object value more than once, even thought the transaction has not modified the value.
 
