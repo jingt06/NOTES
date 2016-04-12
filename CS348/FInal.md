@@ -265,3 +265,36 @@ A **REPEATABLE READ** transaction sets the same locks as a SERILIZABLE transacti
 A **READ COMMITTED** transaction obtains exclusive locks before writing objects and holds therse locks until the end. It also obtains shared lock before reading, but it releases it immediately. Thus it only immune to dirty read.
 
 A **READ UNCOMMITTED** transaction can never make any lock requests, thus it is vulnerable to dirty read, unrepeatabel read nad phantom problem.
+
+---
+
+#CHAPTER 20
+
+---
+
+A **workload description** include the following
+
+- A list of queries and their frequencies
+- A lsit of updates and their frequencies
+- Performance goals for each type of query and update
+
+---
+
+**GUILDELINES**
+
+1. Whether to Index (guildeline 1): Do not build an index unless some query include the query components of updates benefits from it. Whenever possiblem choose indexes that speed up more than one query
+2. Choice of search key (guildeline 2): Attributes mentioned in WHERE clause are candidate for index
+   -  an exact-match selection condition suggests hash index
+   -  range sleection suggests B+ tree
+3. Multi-Attribute Seach Key (guildeline 3) indexes with multiple-attribute search keys should be consided in following two situations
+   - WHERE clause includes conditions more than one attributes of a realtion
+   - enable index-only evaluation strategies
+4. Whether to Cluster (guideline 4) At most one index on a given relation can be clustered, and clustering affects performance greatly. Choice of clustered index is important
+   - do not cluster if a index only evaluation can be enabled
+   - range queries are likely to benefit the most from clustering
+5. Hash VS Tree Index (guildline 5) A B+ tree index is usually perferable because it supports range queries as well as equality queries. A hash index si better in the following situations:
+   - The index is intended to support index nested loops join
+   - There is very important equality query and no range queires  involving the search key attributes
+6. Balancing the Cost of Index Maintenance (guildline 6) consider the impact of each index on the updates in the workload
+   - if maintaning an index slows down frequent update operations, consider dropping the index.
+   - however, adding an index may speed up a gien update operation.
