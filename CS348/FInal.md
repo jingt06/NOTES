@@ -268,7 +268,48 @@ A **READ UNCOMMITTED** transaction can never make any lock requests, thus it is 
 
 ---
 
+#CHAPTER 19
+
+---
+
+**Functional dependency definition** 
+
+Let R be a relational schema and let X and Y be two subset of the set of all attributes of R. We say Y is functionally dependent on X, write X -> Y, if the Y values are determined by the X values.
+
+---
+
+**2NF** is violated if exists X -> Y
+
+- it is not trivial
+- X is not a superkey
+- Y is not part of some key for R
+- X is a proper subset of some key.
+
+---
+
+**3NF** is violated if exists X -> Y
+
+- it is not trivial
+- X is not a super key
+- Y is not part of some key for R
+
+---
+
+**BCNF is violated if exists X -> Y
+
+- it is not trivial
+- X is not a super key
+
+
+---
+
 #CHAPTER 20
+
+---
+
+**Physical Design**: The process of selecting a physical schema to implement the conceptual schema
+
+**Tuning**: Periodically adjusting the physical and/or conceptual schema of a working system to adapt to changing requirements and/or performance characteristics
 
 ---
 
@@ -280,6 +321,33 @@ A **workload description** include the following
 
 ---
 
+**Storage options**
+
+- Unsorted (heap) file
+- sorted file
+- Hash file
+
+---
+
+Indexes are added to
+
+- Speed up queries
+- Extra update overhead
+- Possible index types
+   - B-trees (B+ tree)
+   - R tree
+   - Hash tables
+   - ISAM VSAM
+
+---
+
+**Co-clustering**: two relatrions are co-clustered if they are interleaved within the same file
+
+- userful for storing hierarchical data
+- Can speed up joins, particularly foreign-key joins
+- Sequential scans of either relation become slower
+
+---
 **GUILDELINES**
 
 1. Whether to Index (guildeline 1): Do not build an index unless some query include the query components of updates benefits from it. Whenever possiblem choose indexes that speed up more than one query
@@ -298,3 +366,19 @@ A **workload description** include the following
 6. Balancing the Cost of Index Maintenance (guildline 6) consider the impact of each index on the updates in the workload
    - if maintaning an index slows down frequent update operations, consider dropping the index.
    - however, adding an index may speed up a gien update operation.
+
+   
+---
+
+**Tuning Queries**
+
+- Sorting is expensive, avoid unnecessary ORDER BY, DISTINCT, or GROUP BY
+- Whenever possible, replace subqueries with joins
+- Whenever possible, replace correlated subqueries with uncorrelated subqueries
+
+---
+
+**Tuning Application**
+
+- Minimize communication costs
+- Minimize lock contenstion and hot-spot
