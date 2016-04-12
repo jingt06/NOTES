@@ -272,6 +272,15 @@ A **READ UNCOMMITTED** transaction can never make any lock requests, thus it is 
 
 ---
 
+**Problems Caused by Redundancy**
+
+- **Redundant storage**: some information is stored repeatedly
+- **Update anomalies**: if one copy of such repeated data is updated, an inconsistency is created unless all copies are similarly updated
+- **Insertion anomalies**: it may not be possible to store some information unless some other information is stored as well
+- **Deletion anomalies**: it may not be possible to delete some information without losing some other information as well.
+
+---
+
 **Functional dependency definition** 
 
 Let R be a relational schema and let X and Y be two subset of the set of all attributes of R. We say Y is functionally dependent on X, write X -> Y, if the Y values are determined by the X values.
