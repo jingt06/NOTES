@@ -59,5 +59,5 @@
 - the system maintains the resource allocation graph and tests it to determine whether there is a deadlock
 - Three **deadlock prevention**
    - **No Hold and Wait**: may cause livelock
-   - **Preemption**:  hard to implement and usually not possible
-   - **Resource Ordering**: may be not effecient
+   - **Preemption**:  hard to implement and usually not possible, and will cause starvation
+   - **Resource Ordering**: may be not effecient. indiscrimination.
