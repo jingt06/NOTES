@@ -120,4 +120,91 @@
 
 22 . Which kind of variables map to which section
 
-- see answer above..\
+- see answer above..
+
+23 . The benefits of **multilevel page table** over single level page table
+
+- The total memory needed for multilevel page table are less than the page table for single level page tabe. And for sparse address, second level page table are not required for them, so we can use less memory. Another benefit is the multiple second level page table can go to different location in memory (single page table need to be contiguous).
+
+24 . Why **segmentation + paging**, not **paging + segmentation**
+
+- If paging+segmentation are used, external fragmentation will occur at second level, and the address space will be partitioned in a arbitrary way.
+
+25 . In segmentation and paging, why put extra bits in first level page table (segment table). Why cann't we do the same in two-level paging.
+
+- everthing in the segment should have the same property. 
+- In two-level page table, the first level table just devide the address space into equal block. It doest not have any meaning.
+
+26 . Page tables for large address spaces may be ver large. One problem is that they must be in memory, and must be physically contiguous. What are two solutions to this problem.
+
+- Using multilevel paging.
+- Segmenting and paging.
+
+27 . What steps must the OS take to handle a **page fault** exception?
+
+- 1. issue a request to the dist to copy the missing page into memory,
+- 2. block the faulting process
+- 3. once the copy has completed, set P = 1 in the PTE and unblock the process ( or change the frame number in page table if we put the data into a new frame )
+
+28 . What are the 4 **different page replacement policies** discussed on slide? Describe and compare them?
+
+- **FIFO**(first in first out): provide fairness, but not a good solution 
+- **Optimal Page Replacement**: replace the page that will not be refenced for the longest time. Requires knowledge of future, not real.
+- **LRU** (Least Recently Used): replace the page taht has not been used for the longest time. LRU is difficult to implement in virtual memory systems. (WHY: everytime to read, need to scan the list and move it at end, it can be very expensive)
+- **Clock Replacement Algorithm** (second chance): when scaned, when use bit = 1, set it to 0, if it is 0, this can be replaced.
+
+29 . What are the two types of **locality** to consider when designing a page replacement policy?
+
+- **Temploral locality** says that pages that have been used recently are likely to be used again.
+- **Spatial locality** says pages "close" to those that have been used are likely to be used next.
+
+30 . In practice, frequency base page replacement policies don't work very well. Why is this?
+
+- OS is a real time program, we may not know the frequency of usage during runtime
+
+31 . LRU page replacement is considered impractical in virtual memory systems. Why is this?
+
+- Everytime to read, need to scan the list and move the item at end, it can be very expensive.
+
+32 . Why are modified page more expensive to replace than a clean page?
+
+- If the page is swapped to dist, we need to modify data on disk, which is expensive. Otherwise, we may loose recent modification.
+
+33. What is **prefetching** and what is its goal? What are the hazards of prefetching? Which kind of locality does prefetching try and exploit?
+
+- OS attempt to guess which pages will be used (by temploral locality and spatial locality) and prefetch them.
+
+34 . Give 3 advantages and 2 disatvantages of large page size.
+
+- advantage
+   - smaller page table
+   - large TLB footprint
+   - more efficient I/O
+- disatvantages
+   - greater internal fragmentation 
+   - increased chance of paging in uncessary data or code
+
+35 . Describe the **Working Set Model**, **working set** and resident set. Define a phase change.
+
+- **Working Set Model**: some portions of the process's virtual address space are more likely to be referenced than others.
+- **Working Set**: The heavily used portion of the address space at any any given time.
+   -  working set decrease when you use the process touch the same memory over and over again
+   -  working set increase when the process just call the function and not doing anything. 
+- **Resident Set**: the set of pages that are located in memory.
+
+36 . What is **trashing** and what are two solutions to it?
+
+- **Trashing**: a system is spending too much time paging.
+- Solution: 
+   - Killing processes (not nice)
+   - Suspending and swapping out processes (nicer)
+
+37 . Why is it better to suspend and swap processes tha njust to have the all run at onece?
+
+- Because killing process is not nice and expensive to recover, so in order to avoid trashing, suspend and swap out processes.
+
+38 . Which process to suspend
+
+- low priority processes (least important)
+- blocked processes (not doing userful stuff)
+- large processes (lots of space freed) or small process(easier to reload)
