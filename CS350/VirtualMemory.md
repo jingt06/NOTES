@@ -172,7 +172,7 @@
 
 33. What is **prefetching** and what is its goal? What are the hazards of prefetching? Which kind of locality does prefetching try and exploit?
 
-- OS attempt to guess which pages will be used (by temploral locality and spatial locality) and prefetch them.
+- Idea: Often when we interested in reading page x, in the very near future, we will read page x+1, x+2 ... Thus we can read three of them at one time. It is specially good on array data.
 
 34 . Give 3 advantages and 2 disatvantages of large page size.
 
